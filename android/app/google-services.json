@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "44095444222",
+    "project_id": "doc-book-4874d",
+    "storage_bucket": "doc-book-4874d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44095444222:android:c92e768b94cd25f38841af",
+        "android_client_info": {
+          "package_name": "com.example.docbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44095444222-l0589gvg5hbberpbd758ckurj49su38c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXMuI9dINaHhxy7t5vCcaThMc3SIzIxGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44095444222-l0589gvg5hbberpbd758ckurj49su38c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
