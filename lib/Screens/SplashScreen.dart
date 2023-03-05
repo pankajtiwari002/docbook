@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     Timer(const Duration(seconds: 2), () => autoLogin().then((value) async{
       if(value){
-        Navigator.pushNamedAndRemoveUntil(context, 'home', (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, 'tabs', (route) => false);
       }else{
         Navigator.pushNamedAndRemoveUntil(context, 'phone', (route) => false);
       }

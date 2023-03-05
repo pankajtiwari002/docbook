@@ -1,11 +1,11 @@
 import 'package:docbook/Provider/doctor.dart';
 import 'package:docbook/Widgets/Availabledoctorpage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+// import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
-import 'Widgets/category.dart';
-import 'Widgets/pages.dart';
+import '../Widgets/category.dart';
+import '../Widgets/pages.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -167,6 +167,9 @@ class _HomeState extends State<Home> {
                             patients: doctor[index].patients,
                             specialist: doctor[index].specialist,
                             experience: doctor[index].experience,
+                            hospital: doctor[index].hospital,
+                            about: doctor[index].about,
+                            rating: doctor[index].rating,
                           );
                         },
                         onPageChanged: (value) {
@@ -183,44 +186,44 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      bottomNavigationBar: const GNav(
-        tabMargin: EdgeInsets.all(4),
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        padding: EdgeInsets.all(16),
-        tabBackgroundColor: Color.fromARGB(255, 22, 18, 241),
-        backgroundColor: Colors.white,
-        gap: 8,
-        tabs: [
-          GButton(
-            icon: Icons.home,
-            // iconColor: Colors.white,
-            iconActiveColor: Colors.white,
-            text: 'Home',
-            textColor: Colors.white,
-          ),
-          GButton(
-            icon: Icons.people,
-            // iconColor: Colors.white,
-            iconActiveColor: Colors.white,
-            text: 'Doctor',
-            textColor: Colors.white,
-          ),
-          GButton(
-            icon: Icons.settings,
-            // iconColor: Colors.white,
-            iconActiveColor: Colors.white,
-            text: 'Settings',
-            textColor: Colors.white,
-          ),
-          GButton(
-            icon: Icons.person,
-            // iconColor: Colors.white,
-            iconActiveColor: Colors.white,
-            text: 'Profile',
-            textColor: Colors.white,
-          ),
-        ],
-      ),
+      // bottomNavigationBar: const GNav(
+      //   tabMargin: EdgeInsets.all(4),
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   padding: EdgeInsets.all(16),
+      //   tabBackgroundColor: Color.fromARGB(255, 22, 18, 241),
+      //   backgroundColor: Colors.white,
+      //   gap: 8,
+      //   tabs: [
+      //     GButton(
+      //       icon: Icons.home,
+      //       // iconColor: Colors.white,
+      //       iconActiveColor: Colors.white,
+      //       text: 'Home',
+      //       textColor: Colors.white,
+      //     ),
+      //     GButton(
+      //       icon: Icons.people,
+      //       // iconColor: Colors.white,
+      //       iconActiveColor: Colors.white,
+      //       text: 'Doctor',
+      //       textColor: Colors.white,
+      //     ),
+      //     GButton(
+      //       icon: Icons.settings,
+      //       // iconColor: Colors.white,
+      //       iconActiveColor: Colors.white,
+      //       text: 'Settings',
+      //       textColor: Colors.white,
+      //     ),
+      //     GButton(
+      //       icon: Icons.person,
+      //       // iconColor: Colors.white,
+      //       iconActiveColor: Colors.white,
+      //       text: 'Profile',
+      //       textColor: Colors.white,
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

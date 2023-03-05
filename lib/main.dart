@@ -1,11 +1,11 @@
-import 'dart:developer';
+import 'package:docbook/Screens/detaildoctorScreen.dart';
+import 'package:docbook/Screens/tabsscreen.dart';
 
-import 'package:docbook/Provider/doctor.dart';
-import 'package:docbook/SplashScreen.dart';
-import 'package:docbook/home.dart';
+import './Provider/doctor.dart';
+import 'Screens/SplashScreen.dart';
+import 'Screens/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import './Authentication/otp.dart';
 import './Authentication/phone.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +48,14 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'DocBook',
       routes: {
+        // 'detail screen':(context) => DetailDoctorScreen(),
         'otp':(context) => Otp(),
         'phone': (context) => Phone(),
         'home' : (context) => Home(),
-        'splash': (context) => SplashScreen()
+        'splash': (context) => SplashScreen(),
+        'tabs': (context)=> TabsScreen(),
       },
-      initialRoute: 'splash',
+      initialRoute: 'tabs',
     ),
     );
   }
