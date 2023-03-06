@@ -15,7 +15,7 @@ class Pages extends StatelessWidget {
       height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: Color.fromARGB(255, 22, 18, 241),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(

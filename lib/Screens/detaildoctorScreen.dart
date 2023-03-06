@@ -1,3 +1,5 @@
+import 'package:docbook/Screens/AppointmentScreen.dart';
+import 'package:docbook/pages/index.dart';
 import 'package:flutter/material.dart';
 
 class DetailDoctorScreen extends StatelessWidget {
@@ -36,7 +38,7 @@ class DetailDoctorScreen extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(0),
                     // alignment: Alignment.bottomCenter,
-                    color: Color.fromARGB(255, 253, 253, 253),
+                    color: Color.fromARGB(255, 219, 209, 209),
                     width: double.infinity,
                     height: 400,
                     child: Image.asset(
@@ -195,7 +197,9 @@ class DetailDoctorScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15)
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Indexpage()));
+                      },
                       icon: Icon(Icons.video_call,color: Colors.white,),
                     ),
                   ),
@@ -206,7 +210,10 @@ class DetailDoctorScreen extends StatelessWidget {
                           color: Colors.green,
                           borderRadius: BorderRadius.circular(20)),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          AppointmentScreen.image = image;
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AppointmentScreen()));
+                        },
                         child: Text(
                           'Make a appointment',
                           style: TextStyle(

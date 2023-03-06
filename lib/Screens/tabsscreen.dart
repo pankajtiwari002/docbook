@@ -26,7 +26,7 @@ class _TabsScreenState extends State<TabsScreen> {
     {'pages': Home(),'title': 'Categories'},
     {'pages': DoctorsScreen(),'title': 'Categories'},
     {'pages': SettingsScreen(),'title': 'Categories'},
-    {'pages': ProfileScreen(),'title': 'Categories'}
+    {'pages': Profile(),'title': 'Categories'}
   ];
     super.initState();
   }
@@ -66,10 +66,10 @@ class _TabsScreenState extends State<TabsScreen> {
             textColor: Colors.white,
           ),
           GButton(
-            icon: Icons.settings,
+            icon: Icons.timelapse,
             // iconColor: Colors.white,
             iconActiveColor: Colors.white,
-            text: 'Settings',
+            text: 'RunTime',
             textColor: Colors.white,
           ),
           GButton(

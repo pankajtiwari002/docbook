@@ -1,3 +1,4 @@
+import 'package:docbook/Authentication/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -97,6 +98,17 @@ class _PhoneState extends State<Phone> {
               const SizedBox(
                 height: 15,
               ),
+              // Row(
+              //   children: [
+              //     Text('If you not reister? '),
+              //     TextButton(
+              //       onPressed: () {
+              //         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignUp()));
+              //       },
+              //       child: Text('sign up'),
+              //     ),
+              //   ],
+              // ),
               Container(
                 height: 45,
                 width: double.infinity,

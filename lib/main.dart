@@ -1,7 +1,12 @@
-import 'package:docbook/Screens/detaildoctorScreen.dart';
+// import 'package:docbook/Screens/detaildoctorScreen.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:docbook/Provider/categoryprovider.dart';
 import 'package:docbook/Screens/tabsscreen.dart';
+import 'package:docbook/constants.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+// import 'dart:html';
 
-import './Provider/doctor.dart';
+import 'Provider/doctorprovider.dart';
 import 'Screens/SplashScreen.dart';
 import 'Screens/home.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -42,21 +47,31 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(
           create: (context) => Doctors(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Categories(),
+        ),
       ],
-      child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'DocBook',
-      routes: {
-        // 'detail screen':(context) => DetailDoctorScreen(),
-        'otp':(context) => Otp(),
-        'phone': (context) => Phone(),
-        'home' : (context) => Home(),
-        'splash': (context) => SplashScreen(),
-        'tabs': (context)=> TabsScreen(),
-      },
-      initialRoute: 'tabs',
-    ),
+      child: Phoenix(
+        child: ThemeProvider(
+          initTheme: kDarkTheme,
+          child: Builder(builder: (context){
+            return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'DocBook',
+          routes: {
+            // 'detail screen':(context) => DetailDoctorScreen(),
+            'otp':(context) => Otp(),
+            'phone': (context) => Phone(),
+            'home' : (context) => Home(),
+            'splash': (context) => SplashScreen(),
+            'tabs': (context)=> TabsScreen(),
+          },
+          initialRoute: 'splash',
+            );
+          })
+        ),
+      ),
     );
   }
 }

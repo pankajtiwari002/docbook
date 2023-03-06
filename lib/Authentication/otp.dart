@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:docbook/Authentication/phone.dart';
+import 'package:docbook/Authentication/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -88,7 +90,14 @@ class _OtpState extends State<Otp> {
                       log(Phone.verify.toString());
                       final prefs = await SharedPreferences.getInstance();
                       prefs.setBool('isLogin', true);
-                      Navigator.pushNamedAndRemoveUntil(context, 'home', (route) => false);
+                      // if(SignUp.phone.length >=10){
+                      //     final String userdata = json.encode({
+                      //     'username': SignUp.username,
+                      //     'phone': SignUp.phone,
+                      //   });
+                      //   prefs.setString('userdata', userdata);
+                      // }
+                      Navigator.pushNamedAndRemoveUntil(context, 'tabs', (route) => false);
                     } catch (e) {
                       log(Phone.verify.toString());
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Wrong Otp',textAlign: TextAlign.center,)));

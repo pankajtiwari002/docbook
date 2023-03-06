@@ -1,10 +1,17 @@
-import 'package:docbook/Provider/doctor.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:docbook/Provider/categoryprovider.dart' as cat;
+import 'package:docbook/Provider/doctorprovider.dart';
+import 'package:docbook/Screens/detaildoctorScreen.dart';
+import 'package:docbook/Screens/customsearchdelegate.dart';
 import 'package:docbook/Widgets/Availabledoctorpage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import '../constants.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../Widgets/category.dart';
+import '../Widgets/categorywidget.dart';
 import '../Widgets/pages.dart';
 
 class Home extends StatefulWidget {
@@ -16,6 +23,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   PageController controller = PageController();
+  late int count;
   // int numberOfPages = 3;
   int currentPage = 0;
   // final images = [
@@ -29,10 +37,51 @@ class _HomeState extends State<Home> {
   //   'Dr. Jayshree Dadhich'
   // ];
 
-  final specialist = ['cardiologist', 'ophthalmologist', 'neurologist'];
+  // final specialist = ['cardiologist', 'ophthalmologist', 'neurologist'];
+  List<String> searchTerms = [];
+
+  var themeSwitcher = ThemeSwitcher(builder: (context) {
+      return AnimatedCrossFade(
+        duration: Duration(milliseconds: 200),
+        crossFadeState: Theme.of(context).brightness == Brightness.dark
+            ? CrossFadeState.showFirst
+            : CrossFadeState.showSecond,
+        firstChild: GestureDetector(
+          onTap: () =>
+              ThemeSwitcher.of(context).changeTheme(theme: kLightTheme),
+          child: Icon(
+            LineAwesomeIcons.sun,
+            size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+          ),
+        ),
+        secondChild: GestureDetector(
+          onTap: () => ThemeSwitcher.of(context).changeTheme(theme: kDarkTheme),
+          child: Icon(
+            LineAwesomeIcons.moon,
+            size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+          ),
+        ),
+      );
+    });
+
+  void make(List<Doctor> doctor) {
+    doctor.forEach((element) {
+      searchTerms.add(element.name);
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    count = 0;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Doctor> doctor = Provider.of<Doctors>(context).doctors;
+    final List<cat.Category> categories =
+        Provider.of<cat.Categories>(context).getcategories;
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('Home'),
@@ -47,31 +96,53 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        'Find Your',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
-                      ),
-                      Text(
-                        '   Specialist',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 22,
+              SingleChildScrollView(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Find Your',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(color: Colors.grey, fontSize: 16),
                         ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    width: 160,
-                  ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.chat)),
-                ],
+                        Text(
+                          '   Specialist',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 160,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        if (count == 0) {
+                          make(doctor);
+                          count = 1;
+                        }
+                        // make(doctor);
+                        showSearch(
+                            context: context,
+                            delegate: CustomSearchDelegate(doctor, searchTerms));
+                        // searchTerms.clear();
+                      },
+                      icon: Icon(Icons.search),
+                    ),
+                    // IconButton(
+                    //   onPressed: () {
+              
+                    //   },
+                    //   icon: Icon(Icons.chat),
+                    // ),
+                    // themeSwitcher,
+                  ],
+                ),
               ),
               Container(
                 width: double.infinity,
@@ -91,7 +162,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Container(
-                height: 140,
+                height: 160,
                 child: Column(
                   children: [
                     Row(
@@ -114,15 +185,15 @@ class _HomeState extends State<Home> {
                     ),
                     SingleChildScrollView(
                       child: Row(
-                        children: [
-                          Category('Neurologist', 'assets/images/f1.jpeg'),
-                          const SizedBox(width: 10),
-                          Category('Ophthanologist', 'assets/images/f2.png'),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Category('Cardiologist', 'assets/images/f3.jpeg'),
-                        ],
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: categories.map((category) {
+                          return CategoryWidget(
+                              category: category.category,
+                              description: category.description,
+                              imageurl: category.imageurl,
+                              suggestedDoctor: category.suggestedDoctor,
+                              exercise: category.exercise);
+                        }).toList(),
                       ),
                     ),
                   ],

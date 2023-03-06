@@ -1,7 +1,9 @@
 import 'dart:ffi';
+// import 'dart:html';
 import 'package:flutter/material.dart';
 
 class Doctor {
+  final int id;
   final String hospital;
   final String about;
   final String name;
@@ -12,6 +14,7 @@ class Doctor {
   final String imageurl;
 
   Doctor({
+    required this.id,
     required this.name,
     required this.imageurl,
     required this.patients,
@@ -26,6 +29,7 @@ class Doctor {
 class Doctors with ChangeNotifier {
   final List<Doctor> doctor = [
     Doctor(
+      id: 1,
       name: 'Dr. Pankaj Tiwari',
       imageurl: 'assets/images/d1.png',
       patients: 3.02,
@@ -36,6 +40,7 @@ class Doctors with ChangeNotifier {
       about: 'Dr. Pankaj Tiwari is a renowned Cardiologist with extensive experience in the diagnosis and treatment of cardiovascular disease. He is highly regarded for his expertise in interventional cardiology and including angioplasty.'
     ),
     Doctor(
+      id: 2,
       name: 'Dr. Santosh Devi',
       imageurl: 'assets/images/d2.png',
       patients: 4.16,
@@ -46,6 +51,7 @@ class Doctors with ChangeNotifier {
       about: 'Dr. Santosh Devi is a highly skilled Ophthalmologist with extensive experience in diagnosis and treating a wide range of ey condition. With a commitment to providing personalized care,she strives to help her patients achieve optimal eye health and vision. Her expertise and compassionate approach have earned her a reputation as a trusted and respected eye specialist.'
     ),
     Doctor(
+      id: 3,
       name: 'Dr. Jayshree Dadhich',
       imageurl: 'assets/images/d3.png',
       patients: 2.82,
